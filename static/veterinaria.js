@@ -8,7 +8,7 @@ async function cargarMascotas() {
 
     try {
 
-        const respuesta = await fetch("http://127.0.0.1:5001/mascotas");
+        const respuesta = await fetch("/mascotas");
 
         const mascotas = await respuesta.json();
 
@@ -19,19 +19,12 @@ async function cargarMascotas() {
         mascotas.forEach(mascota => {
 
             contenedor.innerHTML += `
-
                 <div class="card">
-
                     <img src="${mascota.imagen}" alt="${mascota.nombre}">
-
                     <h3>${mascota.nombre}</h3>
-
                     <p>${mascota.descripcion}</p>
-
                     <button>Más información</button>
-
                 </div>
-
             `;
 
         });
@@ -52,7 +45,7 @@ async function cargarServicios() {
 
     try {
 
-        const respuesta = await fetch("http://127.0.0.1:5002/servicios");
+        const respuesta = await fetch("/servicios");
 
         const servicios = await respuesta.json();
 
@@ -63,19 +56,12 @@ async function cargarServicios() {
         servicios.forEach(servicio => {
 
             contenedor.innerHTML += `
-
                 <div class="card">
-
                     <img src="${servicio.imagen}" alt="${servicio.nombre}">
-
                     <h3>${servicio.nombre}</h3>
-
                     <p>${servicio.descripcion}</p>
-
                     <button>$ ${servicio.precio}</button>
-
                 </div>
-
             `;
 
         });
@@ -101,29 +87,22 @@ formulario.addEventListener("submit", async function(e){
     const datos = {
 
         nombre: document.getElementById("nombre").value,
-
         correo: document.getElementById("correo").value,
-
         telefono: document.getElementById("telefono").value,
-
         mascota: document.getElementById("mascota").value,
-
         especie: document.getElementById("especie").value,
-
         mensaje: document.getElementById("mensaje").value
 
     };
 
     try{
 
-        const respuesta = await fetch("http://127.0.0.1:5003/clientes",{
+        const respuesta = await fetch("/clientes",{
 
             method:"POST",
 
             headers:{
-
                 "Content-Type":"application/json"
-
             },
 
             body:JSON.stringify(datos)
